@@ -14,14 +14,18 @@ class Busquedas {
   }
 
   async ciudad(lugar = "") {
-    console.log(lugar);
     try {
       const instance = axios.create({
         baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
         params: this.paramsMapBox,
       });
       const res = await instance.get();
-      console.log(res.data);
+      return res.data.features.map((lugar) => ({
+        id: lugar.id,
+        nombre: lugar.place_name,
+        lng: lugar.center[0],
+        lat: lugar.center[1],
+      }));
     } catch (error) {
       console.log(error);
     }
