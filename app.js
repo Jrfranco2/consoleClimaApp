@@ -38,8 +38,7 @@ const main = async () => {
         console.log("Temperatura Máxima: ", `${clima.max}`.cyan);
         break;
       case 2:
-        const data = busquedas.leerDB();
-        data.historial.forEach((lugar, i) => {
+        busquedas.historialCapitalizado.forEach((lugar, i) => {
           const index = `${i + 1}.`.green;
           console.log(`${index} ${lugar}`);
         });
